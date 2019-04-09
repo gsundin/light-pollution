@@ -1,6 +1,8 @@
 # light-pollution
 For the [I Can't Draw But Want To Make A Game"](https://itch.io/jam/icantdraw) 2019 game jam.
 
+![](https://i.imgur.com/xgGZJ5V.png)
+
 ---
 ### Tools:
 
