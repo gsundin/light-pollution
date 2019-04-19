@@ -1,7 +1,6 @@
-# light-pollution
-For the [I Can't Draw But Want To Make A Game](https://itch.io/jam/icantdraw) 2019 game jam.
+<img src="/Assets/Sprites/light_pollution_jittery.gif" alt="Light Pollution" style="width:200px"/>
 
-<img src="/Assets/Sprites/light_pollution_jittery.gif" alt="Light Pollution"/>
+For the [I Can't Draw But Want To Make A Game](https://itch.io/jam/icantdraw) 2019 game jam.
 
 ---
 ### Tools:
