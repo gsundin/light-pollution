@@ -1,4 +1,4 @@
-<img src="/Assets/Sprites/light_pollution_jittery.gif" alt="Light Pollution" style="width:400px"/>
+<img src="/Assets/Sprites/light_pollution_jittery.gif" alt="Light Pollution" style="width:400"/>
 
 For the [I Can't Draw But Want To Make A Game](https://itch.io/jam/icantdraw) 2019 game jam.
 
