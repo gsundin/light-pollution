@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
             {
                 Sprite darkSprite = Resources.Load("Sprites/" + split[0] + "_dark", typeof(Sprite)) as Sprite;
                 otherSprite.sprite = darkSprite;
-                otherLight.enabled = false;
+                //otherLight.enabled = false;
                 pecks++;
             }
         }

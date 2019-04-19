@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Globals : MonoBehaviour
 {
-    public static float[] LEVEL_BOUNDARIES_X = {-8f, 15f};
-    public static float[] LEVEL_BOUNDARIES_Y = {-6f, 41f};
+    public static float[] LEVEL_BOUNDARIES_X = {-38f, 45f};
+    public static float[] LEVEL_BOUNDARIES_Y = {-8f, 41f};
 
     public static int[] LIGHTS_PER_LEVEL = {5};
 
