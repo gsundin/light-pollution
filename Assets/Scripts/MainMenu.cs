@@ -65,7 +65,7 @@ public class MainMenu : MonoBehaviour
     {
         CompleteCameraController.gameHasStarted = true;
         CompleteCameraController.Instance.initializePlayerCamera();
-        Camera.main.orthographicSize = 16;
+        Camera.main.orthographicSize = 12;
     }
 
     void Select()
