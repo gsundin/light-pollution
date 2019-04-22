@@ -6,7 +6,7 @@ public class CompleteCameraController : MonoBehaviour
     public static CompleteCameraController Instance { get; private set; }
 
     public GameObject player;       //Public variable to store a reference to the player game object
-    private float offsetX = -25;         //Private variable to store the offset distance between the player and camera
+    private float offsetX = -34.5f;         //Private variable to store the offset distance between the player and camera
     private float offsetY = -7.64f;
 
     public static bool gameHasStarted = false;
@@ -14,9 +14,8 @@ public class CompleteCameraController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //Calculate and store the offset value by getting the distance between the player's position and camera's position.
-        //offsetX = transform.position.x - player.transform.position.x;
-        //offsetY = transform.position.y - player.transform.position.y;
+        offsetX = -34.5f;
+        offsetY = -7.64f;
     }
 
     public void initializePlayerCamera()

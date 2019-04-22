@@ -7,6 +7,9 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance { get; private set; }
 
+    public static bool startController = false;
+    private bool victory = false;
+
     public float speed;
     public float jumpForce;
     private float moveInput;
@@ -34,39 +37,48 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        GameObject.FindWithTag("haze").GetComponent<SpriteRenderer>().enabled = false;
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
         rb = GetComponent<Rigidbody2D>();
         jumps = 0;
     }
 
     void Update()
     {
-        if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && jumps < (maxJumps - 1))
+        if (startController && !victory)
         {
-            rb.velocity = Vector2.up * jumpForce;
-            SoundManager.Instance.Play("flap");
-            jumps++;
-        }
-        else if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && jumps < maxJumps)
-        {
-            rb.velocity = Vector2.up * jumpForce;
-            SoundManager.Instance.Play("last_flap");
-            jumps++;
-        }
+            if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && jumps < (maxJumps - 1))
+            {
+                rb.velocity = Vector2.up * jumpForce;
+                SoundManager.Instance.Play("flap");
+                jumps++;
+            }
+            else if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && jumps < maxJumps)
+            {
+                rb.velocity = Vector2.up * jumpForce;
+                SoundManager.Instance.Play("last_flap");
+                jumps++;
+            }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Peck();
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Peck();
+            }
         }
+        
     }
 
     void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
 
-        moveInput = Input.GetAxis("Horizontal");
-
+        if (!victory)
+        {
+            moveInput = Input.GetAxis("Horizontal");
+        }
+        
         lastY = rb.position.y;
-
+        
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
 
         if (facingRight == true && moveInput > 0)
@@ -80,10 +92,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (rb.position.y <= lastY)
-        {
-            jumps = 0;
-        }
+        jumps = 0;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -125,23 +134,31 @@ public class PlayerController : MonoBehaviour
             {
                 Sprite darkSprite = Resources.Load("Sprites/" + split[0] + "_dark", typeof(Sprite)) as Sprite;
                 otherSprite.sprite = darkSprite;
-                //otherLight.enabled = false;
                 pecks++;
             }
         }
 
         if (pecks == Globals.LIGHTS_PER_LEVEL[0])
         {
-
-            Invoke("nothing", 0.3f);
             SoundManager.Instance.Play("party_whistle");
-            // ADVANCE TO NEXT LEVEL
+            VictoryTextCameraFollower.victory = true;
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            GameObject.FindWithTag("haze").GetComponent<SpriteRenderer>().enabled = true;
+            victory = true;
+            // END GAME
+            // Invoke("ResetLevel", 5);
+            Invoke("Quit", 5);
         }
     }
 
-    void nothing()
+    void Quit()
     {
+        Application.Quit();
+    }
 
+    void ResetLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     void Flip()
